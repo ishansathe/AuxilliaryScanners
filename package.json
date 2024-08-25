@@ -1,0 +1,30 @@
+{
+  "name": "auxilliaryscanners",
+  "version": "1.0.0",
+  "description": "Package containing dependencies required for the auxilliary scanners for the smart contract assessment tool",
+  "main": "AuxilliaryScanner.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ishansathe/AuxilliaryScanners.git"
+  },
+  "keywords": [
+    "JavaScript",
+    "JSON",
+    "AST",
+    "ANTLR4",
+    "parser",
+    "Solidity"
+  ],
+  "author": "Ishan Sathe",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ishansathe/AuxilliaryScanners/issues"
+  },
+  "homepage": "https://github.com/ishansathe/AuxilliaryScanners#readme",
+  "dependencies": {
+    "@solidity-parser/parser": "0.18.0"
+  }
+}
