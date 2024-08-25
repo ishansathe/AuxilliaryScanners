@@ -64,11 +64,26 @@ function getStructs() {
             })
         }
     })
+
+    console.log(structList)
     
-    structList.forEach(struct => {
-        console.log(struct)
-    })
+    // To display each struct
+
+    let displayStructContents = () => {
+        structList.forEach(struct => {
+            console.log(struct)
+        })
+    }
+
+    return (structList, displayStructContents)
 }
 
 
-getStructs()
+let (structs, contentChecker) = getStructs()
+/*
+// This function returns 2 things:
+    1. A struct list
+    2. A function that returns contents of the structs (the variables and its types.)
+*/
+
+// contentChecker()
