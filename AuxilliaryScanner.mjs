@@ -1,6 +1,8 @@
 
 export class Variables{
     constructor(vb){
+        // This class is rudimentary as for now it only supports elementary types and struct types
+        // More support is needed for Mappings and structs. Also possibly for enums.
         this.variableType = vb.typeName.name
         if (vb.typeName.type == 'UserDefinedTypeName'){
             this.variableType = vb.typeName.namePath
