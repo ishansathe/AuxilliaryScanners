@@ -1,13 +1,3 @@
-import fs from 'fs'
-import * as contractparser from '@solidity-parser/parser'
-
-let sourceContract = fs.readFileSync('C:\\Users\\ACER\\Documents\\github\\AssessorTool\\Smart Contracts\\SmartContractstruct.sol', 'utf-8')
-
-let contractAST = contractparser.parse(sourceContract)
-
-
-// Returns list of variables with types.
-
 
 export class Variables{
     constructor(vb){
@@ -19,26 +9,6 @@ export class Variables{
     }
 }
 
-
-function getVariables(AST) {
-    let vbList = []
-    contractparser.visit(AST, {
-        StateVariableDeclaration: function(svb) {
-            contractparser.visit(svb, {
-                VariableDeclaration: function(vb) {
-                    vbList.push(new Variables(vb))
-                }
-            })
-        }
-    })
-    console.log((vbList))
-    
-    return vbList
-}
-
-// getVariables(contractAST)
-
-
 export class Structs{
     constructor(_struct) {
         this.structName = _struct.name
@@ -49,21 +19,6 @@ export class Structs{
     }
 }
 
-function getStructs(AST) {
-    let structList = []
-    contractparser.visit(AST, {
-        StructDefinition: function(sd){
-            structList.push(new Structs(sd))
-        }
-    })
-    
-    structList.forEach(struct => {
-        console.log(struct)
-    })
-}
-
-
-// getStructs(contractAST)
 
 export class OutputFormat{
     constructor(_contractNode, _funcNode){
@@ -99,12 +54,3 @@ export class OutputFormat{
 export function getMemberAccess(node){
     return (node.expression.name+'.'+node.memberName)  
 }
-
-// exports.getStructs = (contractAST) => {
-//     getStructs(contractAST)
-// }
-// exports.getVariables = (contractAST)=> {
-//     getVariables(contractAST)
-// }
-
-
