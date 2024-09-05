@@ -5,9 +5,34 @@ export class Variables{
         // More support is needed for Mappings and structs. Also possibly for enums.
         this.variableType = vb.typeName.name
         if (vb.typeName.type == 'UserDefinedTypeName'){
+            // Although structs are not user defined types, the antlr4 parser views them as so.
             this.variableType = vb.typeName.namePath
         }
+        if(vb.typeName.type == 'Mapping') {
+            this.variableType = new Mappings(vb.typeName)
+        }
+
         this.variableName = vb.name
+    }
+}
+
+/*    Key Types in mappings currently support:
+        elementary types
+        user defined types (not structs)
+        contract types
+        enums.
+
+*/
+// The Auxilliary Scanner is currently limited to Elementary Types and nested Mappings
+export class Mappings{
+    constructor(mp){
+        this.variableType = 'Mapping'
+        this.keyType = mp.keyType.name
+        this.valueType = mp.valueType.name
+        if(mp.valueType.type == 'Mapping') {
+            this.valueType = new Mappings(mp.valueType)
+        }
+        // Array types are currently not supported. Can be included later.
     }
 }
 
