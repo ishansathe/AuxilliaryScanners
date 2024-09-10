@@ -1,8 +1,15 @@
 
+/*
+    The class now support elementary types, arrays (both fixed and dynamic)
+    Mappings (as well as nested mappings).
+    Struct types (which will now simply)
+
+    Testing has not yet been done on true User Defined Type Names 
+    (The parser sees Struct Variables as UserDefined Types for some reason.)
+    Notes have been taken regarding opinion and changes to be made.
+*/
 export class Variables{
     constructor(vb){
-        // This class is rudimentary as for now it only supports elementary types and struct types
-        // More support is needed for Mappings and structs. Also possibly for enums.
         this.variableType = vb.typeName.name
         if (vb.typeName.type == 'UserDefinedTypeName'){
             // Although structs are not user defined types, the antlr4 parser views them as so.
@@ -13,12 +20,7 @@ export class Variables{
         }
 
         if(vb.typeName.type == 'ArrayTypeName') {
-            if (vb.typeName.length == null) {
-                this.variableType = vb.typeName.baseTypeName.name + '[' + ']';
-            } else  {
-                let temp = vb.typeName.length.number
-                this.variableType = vb.typeName.baseTypeName.name + '[' + temp + ']';
-            }
+            this.variableType = getArrayType(vb.typeName)
         }
 
         this.variableName = vb.name
@@ -32,8 +34,8 @@ export class Variables{
         enums.
 
 */
-// The Auxilliary Scanner is currently limited to Elementary Types and nested Mappings
-export class Mappings{
+// The Auxilliary Scanner is currently limited to Elementary Types, Arrays and nested Mappings
+class Mappings{
     constructor(mp){
         this.keyType = mp.keyType.name
         this.valueType = mp.valueType.name
@@ -44,7 +46,6 @@ export class Mappings{
         if(mp.valueType.type == 'ArrayTypeName'){
             this.valueType = getArrayType(mp.valueType)
         }
-        // Array types are currently not supported. Can be included later.
     }
 }
 
