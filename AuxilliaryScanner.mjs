@@ -12,6 +12,15 @@ export class Variables{
             this.variableType = new Mappings(vb.typeName)
         }
 
+        if(vb.typeName.type == 'ArrayTypeName') {
+            if (vb.typeName.length == null) {
+                this.variableType = vb.typeName.baseTypeName.name + '[' + ']';
+            } else  {
+                let temp = vb.typeName.length.number
+                this.variableType = vb.typeName.baseTypeName.name + '[' + temp + ']';
+            }
+        }
+
         this.variableName = vb.name
     }
 }
@@ -26,14 +35,29 @@ export class Variables{
 // The Auxilliary Scanner is currently limited to Elementary Types and nested Mappings
 export class Mappings{
     constructor(mp){
-        this.variableType = 'Mapping'
         this.keyType = mp.keyType.name
         this.valueType = mp.valueType.name
         if(mp.valueType.type == 'Mapping') {
             this.valueType = new Mappings(mp.valueType)
         }
+
+        if(mp.valueType.type == 'ArrayTypeName'){
+            this.valueType = getArrayType(mp.valueType)
+        }
         // Array types are currently not supported. Can be included later.
     }
+}
+
+
+function getArrayType(arrayNode){
+    let variableType
+    if (arrayNode.length == null) {
+        variableType = arrayNode.baseTypeName.name + '[' + ']';
+    } else  {
+        let temp = arrayNode.length.number
+        variableType = arrayNode.baseTypeName.name + '[' + temp + ']';
+    }
+    return variableType
 }
 
 export class Structs{
