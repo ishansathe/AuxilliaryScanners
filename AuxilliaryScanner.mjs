@@ -50,7 +50,7 @@ class Mappings{
 }
 
 
-function getArrayType(arrayNode){
+export function getArrayType(arrayNode){
     let variableType
     if (arrayNode.length == null) {
         variableType = arrayNode.baseTypeName.name + '[' + ']';
@@ -95,9 +95,21 @@ export class OutputFormat{
         }
         this.funcParams = []
         _funcNode.parameters.forEach(param => {
+
+            let paramName = param.identifier.name
+            let paramType = param.typeName.name
+
+            if(param.typeName.type == 'ArrayTypeName') {
+                paramType = getArrayType(param.typeName);
+            }
+
+            if(param.typeName.type == 'UserDefinedTypeName') {
+                paramType = param.typeName.namePath;
+            }
+
             this.funcParams.push({
-                paramType : param.typeName.name,
-                paramName : param.identifier.name
+                paramType : paramType,
+                paramName : paramName
             })
         });
     }

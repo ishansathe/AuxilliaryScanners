@@ -1,0 +1,11 @@
+{"variableType":"bool","variableName":"sent"}
+{"variableType":"string","variableName":"name"}
+{"variableType":"uint256","variableName":"age"}
+{"variableType":"address","variableName":"wallet"}
+{"variableType":"Person","variableName":"person"}
+{"variableType":{"keyType":"address","valueType":"bool"},"variableName":"sentOnce"}
+{"variableType":{"keyType":"address","valueType":{"keyType":"uint","valueType":"bool"}},"variableName":"nest"}
+{"variableType":"uint[3]","variableName":"a"}
+{"variableType":{"keyType":"uint"},"variableName":"c"}
+{"variableType":"address","variableName":"_to"}
+{"variableType":"bool","variableName":"sent"}{"variableType":"string","variableName":"name"}{"variableType":"uint256","variableName":"age"}{"variableType":"address","variableName":"wallet"}{"variableType":"Person","variableName":"person"}{"variableType":{"keyType":"address","valueType":"bool"},"variableName":"sentOnce"}{"variableType":{"keyType":"address","valueType":{"keyType":"uint","valueType":"bool"}},"variableName":"nest"}{"variableType":"uint[3]","variableName":"a"}{"variableType":{"keyType":"uint","valueType":"uint[]"},"variableName":"c"}{"variableType":"address","variableName":"_to"}{"variableType":"bool","variableName":"sent"}{"variableType":"string","variableName":"name"}{"variableType":"uint256","variableName":"age"}{"variableType":"address","variableName":"wallet"}{"variableType":"Person","variableName":"person"}{"variableType":{"keyType":"address","valueType":"bool"},"variableName":"sentOnce"}{"variableType":{"keyType":"address","valueType":{"keyType":"uint","valueType":"bool"}},"variableName":"nest"}{"variableType":"uint[3]","variableName":"a"}{"variableType":{"keyType":"uint","valueType":"uint[]"},"variableName":"c"}{"variableType":"address","variableName":"_to"}{"variableType":"bool","variableName":"sent"}
