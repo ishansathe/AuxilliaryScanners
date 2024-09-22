@@ -24,6 +24,9 @@ export class Variables{
         }
 
         this.variableName = vb.name
+
+        this.isConstant = vb.isDeclaredConst;
+        this.isImmutable = vb.isImmutable;
     }
 }
 
@@ -73,8 +76,9 @@ export class Structs{
 
 
 export class OutputFormat{
-    constructor(_contractNode, _funcNode){
+    constructor(_contractNode, _funcNode, _likelihood){
         this.contractName = _contractNode.name
+        this.contractLocation = _contractNode.loc
         
         if(_funcNode.name === null){
             this.funcName = 'none'
@@ -112,9 +116,37 @@ export class OutputFormat{
                 paramName : paramName
             })
         });
+
+        this.likelihood = _likelihood;
     }
 }
 
 export function getMemberAccess(node){
     return (node.expression.name+'.'+node.memberName)  
 }
+
+
+// Exploit one
+
+
+// For now keeping this in the same place.
+export function getVarName (node) {
+    if(node.type == 'Identifier'){
+        if(node.name == undefined) {
+            console.log(JSON.stringify(node))
+        }
+        return node.name;
+        
+    }
+
+    if(node.type == 'IndexAccess'){
+        if(node.base.type == 'IndexAccess'){
+            return getVarName(node.base)
+        }else {
+            if(node.base.name == undefined){
+                console.log(JSON.stringify(node.base))
+            }
+            return node.base.name;
+        }
+    }
+}       
